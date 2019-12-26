@@ -21,7 +21,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        ### 双指针，快指针指向部位0的元素的位置，然后交换快慢指针的值。 i 遍历数组， j按顺序保存非零，
+        ### 解法一：双指针，快指针指向部位0的元素的位置，然后交换快慢指针的值。 i 遍历数组， j按顺序保存非零，
         # j = 0
         # for i in range(len(nums)):
         #     if nums[i] != 0:
@@ -29,7 +29,7 @@ class Solution:
         #         j+=1
         # return nums
 
-        ### 解法一：暴力搜，当碰到0，开始在当前位置之后的元素里搜索不为0的数，找到后交换数值，继续向后遍历。
+        ### 解法二：暴力搜，当碰到0，开始在当前位置之后的元素里搜索不为0的数，找到后交换数值，继续向后遍历。
         # 解答成功:
         # 执行耗时: 48ms, 击败了98.59 % 的Python3用户
         # 内存消耗: 13.8MB, 击败了99.25 % 的Python3用户
@@ -41,6 +41,7 @@ class Solution:
         for i in range(j,len(nums)):
             nums[i] = 0
 
+        ###  更简洁的，用remove（0），append（0）
 
 
 #leetcode submit region end(Prohibit modification and deletion)
