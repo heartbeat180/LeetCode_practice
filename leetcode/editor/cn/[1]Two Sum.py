@@ -11,13 +11,43 @@
 # 
 # Related Topics 数组 哈希表
 
-
-
-#leetcode submit region begin(Prohibit modification and deletion)
+# #leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range(len(nums)):
-            for j in range(i+1,len(nums)):
-                if nums[i] + nums[j] == target:
-                    return [i,j]
+
+        ###　　纯暴力解法，复杂度太高
+        # for i in range(len(nums)):
+        #     for j in range(i+1,len(nums)):
+        #         if nums[i] + nums[j] == target:
+        #             return [i,j]
+
+        ###  创建新list， 找减数是否在其中，并且只从num[i]的前或后面查找
+        # j = -1
+        # for i in range(len(nums)):
+        #     temp = nums[i+1:]
+        #     if (target - nums[i]) in temp :
+        #         j = temp.index(target - nums[i])
+        #         j += (i+1)
+        #     if j>=0:
+        #         return [i,j]
+
+        ###  用字典模拟哈希查询过程
+        # hashmap = {}
+        # for ind, num in enumerate(nums):
+        #     hashmap[num] = ind
+        # for i,num in enumerate(nums):
+        #     j = hashmap.get(target - num)
+        #     if j is not None and i!=j:
+        #         return  [i,j]
+
+        ###  用字典模拟哈希查询过程, 并做改进，只在num[i]前面找. 速度最快
+        hashmap = {}
+        for i,num in enumerate(nums):
+            if hashmap.get(target - num) is not None :
+                return  [hashmap.get(target - num),i]
+            hashmap[num] = i
+
+
+
 #leetcode submit region end(Prohibit modification and deletion)
+
