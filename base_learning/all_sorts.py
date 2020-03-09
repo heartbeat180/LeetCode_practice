@@ -71,6 +71,44 @@ def quick_sort(alist):
     right = [x for x in alist if x > pivot]
     return quick_sort(left) + middle + quick_sort(right)  # 递归排序子序列
 
+## 归并排序
+def mergeSort(alist):
+    if len(alist) < 2:
+        return alist
+    middle  = len(alist)//2
+    left, right = alist[0:middle], alist[middle:]
+    return merge(mergeSort(left), mergeSort(right))
+
+def merge(left, right):
+    result=[]
+    while left and right:
+        if left[0] < right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    while left:
+        result.append(left.pop(0))
+    while right:
+        result.append(right.pop(0))
+    return result
+
+# 计数排序
+def countSort(alist):
+    max_num = max(alist)
+    sorted_i = 0
+    blist = [0]*(max_num + 1)
+    for i in range(len(alist)):
+        if not alist[i]:
+            blist[alist[i]] = 0
+        blist[alist[i]] += 1
+    for j in range(max_num +1):
+        while blist[j]>0:
+            alist[sorted_i] = j
+            sorted_i += 1
+            blist[j] -= 1
+    return alist
+
+
 
 if __name__ == "__main__":
     import numpy as np
@@ -94,5 +132,13 @@ if __name__ == "__main__":
     print(a)
 
     a = np.arange(8)
+    np.random.shuffle(a)
+    print(quick_sort(a))
+
+    a = np.arange(9)
+    np.random.shuffle(a)
+    print(quick_sort(a))
+
+    a = np.arange(10)
     np.random.shuffle(a)
     print(quick_sort(a))

@@ -59,7 +59,7 @@ class Solution:
         # return False
 
         ## 双指针
-        if not (head and head.next):
+        if  (head and head.next) is None :
             return False
         slow = head
         fast = head.next
